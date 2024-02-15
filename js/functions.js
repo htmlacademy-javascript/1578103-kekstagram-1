@@ -60,3 +60,20 @@ const checkLengthString = (string, maxLength) => {
 console.log('Результат 4-ой функции:');
 console.log(checkLengthString('проверяемая строка', 10));
 
+//Функция №5, возвращающая случайное число с плавающей точкой из переданного диапазона включительно
+
+const getRandom = (min, max, decimalPlaces) => {
+  if (typeof min !== 'number' || typeof max !== 'number' || typeof decimalPlaces !== 'number') {// на случай неверного типа данных введенного аргумента
+    return NaN;
+  }
+  // return (typeof min !== "number" || typeof max !== "number" || typeof decimalPlaces !== "number") ? NaN :// на случай неверного типа данных
+  if (min < max) {
+    const randomNumber = (Math.random() * (max - min) + min).toFixed(decimalPlaces);
+    return randomNumber;
+  }
+  const randomNumber = (Math.random() * (min - max) + max).toFixed(decimalPlaces);
+  return randomNumber;
+};
+
+console.log('Результат 4-ой функции:');
+console.log(getRandom(1.2, 1.1, 5));
