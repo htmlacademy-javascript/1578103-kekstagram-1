@@ -7,7 +7,39 @@ const checkPalindrome = (string) => {
   // или лучше писать для улучшения читаемости?
 };
 console.log('Результат 1-ой функции:');
-console.log(checkPalindrome('Лёша на    полке клопа нашёл '));
+console.log(checkPalindrome('топот'));
+console.log(checkPalindrome('ДовОд'));
+console.log(checkPalindrome('Кекс'));
+console.log(checkPalindrome('Лёша   на полке клопа  нашёл    '));
+
+// Функция №1 вариант 2 для проверки, является ли строка палиндромом
+
+const checkPalindromeString = (string) => {
+  string = `${string}`;
+  string = string.toLowerCase().replaceAll(' ', '');
+  let stringLength = string.length;
+  stringLength--;
+  let stringReverse = string[stringLength];
+  for (stringLength--; stringLength >= 0; stringLength--) {
+    stringReverse = stringReverse + string[stringLength];
+  }
+  return string === stringReverse;
+};
+console.log('Результат 1-ой функции вариант 2:');
+console.log(checkPalindromeString('топот'));
+console.log(checkPalindromeString('ДовОд'));
+console.log(checkPalindromeString('Кекс'));
+console.log(checkPalindromeString('Лёша   на полке клопа  нашёл    '));
+
+
+// // Строка является палиндромом
+// имяФункции('топот'); // true
+// // Несмотря на разный регистр, тоже палиндром
+// имяФункции('ДовОд'); // true
+// // Это не палиндром
+// имяФункции('Кекс');  // false
+// Это палиндром
+//имяФункции('Лёша на полке клопа нашёл '); // true
 
 //Функция №2 возврата целого положительного числа
 
