@@ -10,9 +10,9 @@ console.log('Результат 1-ой функции:');
 console.log(checkPalindrome('топот'));
 console.log(checkPalindrome('ДовОд'));
 console.log(checkPalindrome('Кекс'));
-console.log(checkPalindrome('Лёша   на полке клопа  нашёл    '));
+console.log(checkPalindrome('Лёша   на полке клопа  нашёл   '));
 
-// Функция №1 вариант 2 для проверки, является ли строка палиндромом
+// Функция №1 вариант 2 для проверки, является ли строка палиндромом.
 
 const checkPalindromeString = (string) => {
   string = `${string}`;
