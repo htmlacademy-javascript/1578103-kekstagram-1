@@ -1,3 +1,2 @@
-import { getArrayPhotoDescription } from './data.js';
+import './show-other-photos.js';
 
-console.log(getArrayPhotoDescription());
