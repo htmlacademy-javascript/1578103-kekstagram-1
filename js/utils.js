@@ -1,3 +1,8 @@
+const createIdGenerator = () => {
+  let lastGeneratedId = 0;
+  return () => (lastGeneratedId += 1);
+};
+
 const getRandomInteger = (min, max) => {
   const minInteger = Math.ceil(Math.min(min, max));
   const maxInteger = Math.floor(Math.max(min, max));
@@ -6,4 +11,4 @@ const getRandomInteger = (min, max) => {
 
 const getRandomArrayElement = (arrayName) => arrayName[getRandomInteger(0, arrayName.length - 1)];
 
-export { getRandomInteger, getRandomArrayElement };
+export { createIdGenerator, getRandomInteger, getRandomArrayElement };
