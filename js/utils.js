@@ -11,4 +11,6 @@ const getRandomInteger = (min, max) => {
 
 const getRandomArrayElement = (arrayName) => arrayName[getRandomInteger(0, arrayName.length - 1)];
 
-export { createIdGenerator, getRandomInteger, getRandomArrayElement };
+const isEscKey = (e) => e.key === 'Escape';
+
+export { createIdGenerator, getRandomInteger, getRandomArrayElement, isEscKey };
