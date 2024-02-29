@@ -1,4 +1,4 @@
-import { MIN_LIKES, MAX_LIKES, AVATAR_MIN_INDEX, AVATAR_MAX_INDEX, MIN_NUMBER_COMMENTS, MAX_NUMBER_COMMENTS, MAX_GENERATED_OBJECTS } from './data-generation-constants.js';
+import { MIN_LIKES, MAX_LIKES, AVATAR_MIN_INDEX, AVATAR_MAX_INDEX, MIN_NUMBER_COMMENTS, MAX_NUMBER_COMMENTS, MAX_GENERATED_OBJECTS } from './constants.js';
 import { createIdGenerator, getRandomInteger, getRandomArrayElement } from './utils.js';
 
 const DESCRIPTION_PHOTO = ['Вид из окна гостиницы', 'На пляж', 'Красивый пляж', 'Я фотограф', 'А это точно джакузи?', 'Точно дверь не сломалась?', 'Обед, когда до лета 7 дней', 'Очень молодое вино - это сок', 'Привет - железная птица', 'Удобная полка', 'Дорога в рай', 'Ауди', 'Местная кухня', 'Кексоролл', 'Когда Железному человеку холодно', 'Страшно красиво', 'Я первый слева в третьем ряду, точнее мое ухо', 'Американская  мечта', 'Заказал на Кекс-экспресс', 'Какой отдых без пальм?', 'Вкусняшка', 'Попросила мужа красиво сфотографировать на фоне заката)', 'Мой сосед, а может и обед', 'Концерт', 'Похоже повернул не туда'];
