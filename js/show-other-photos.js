@@ -31,4 +31,5 @@ otherPhoto.addEventListener('click', (e) => {
 
 });
 
+
 export { renderCards };

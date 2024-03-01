@@ -1,7 +1,6 @@
 import { isEscKey } from './utils.js';
 import { clearComments, showСomments } from './comments-list.js';
 
-
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const bigPictureClose = bigPicture.querySelector(' .big-picture__cancel ');
@@ -9,6 +8,7 @@ const body = document.querySelector('body');
 const likesNumber = bigPicture.querySelector('.likes-count');
 const descriptionPhoto = bigPicture.querySelector('.social__caption');
 
+// let id = 0;
 
 const onDocumentKeydown = (e) => {
   if (isEscKey(e)) {
@@ -17,7 +17,6 @@ const onDocumentKeydown = (e) => {
   }
 };
 
-
 const renderModal = ({ url, description, likes, comments }) => {
   bigPictureImg.src = url;
   likesNumber.textContent = likes;
@@ -25,12 +24,17 @@ const renderModal = ({ url, description, likes, comments }) => {
   showСomments(comments);
 };
 
+
 const openFullSizeMode = (photo) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
+  bigPictureImg.focus();
   renderModal(photo);
+  // id = photo.id;
+  // return id;
 };
+
 
 function closeFullSizeMode() {
   bigPicture.classList.add('hidden');

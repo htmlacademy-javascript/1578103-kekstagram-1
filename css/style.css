@@ -804,6 +804,10 @@ main {
   display: block;
 }
 
+.big-picture__img img:focus{
+  outline: none;
+}
+
 .social {
   display: -webkit-box;
   display: -ms-flexbox;

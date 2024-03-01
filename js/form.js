@@ -1,5 +1,7 @@
 import { isEscKey } from './utils.js';
-import { resetPristine } from './validate-download-form.js';
+import { resetPristine, isValidate } from './validate-form.js';
+import { SCALE_DEFAULT } from "./constants.js";
+import { getStatusScaleButton, scaleUp } from './scale.js';
 
 
 const body = document.querySelector('body');
@@ -9,11 +11,18 @@ const imageEditor = form.querySelector('.img-upload__overlay');
 const closeButton = form.querySelector('.img-upload__cancel');
 const imageDescription = form.querySelector('.text__description');
 const imageHashtag = form.querySelector('.text__hashtags');
+const scaleValue = form.querySelector('.scale__control--value');
+const previewImage = form.querySelector('.img-upload__preview img');
+const scaleUpButton = form.querySelector('.scale__control--bigger');
+const scaleDownButton = form.querySelector('.img-upload__preview img');
 
 const clearForm = () => {
   imgeUpload.value = '';
   imageDescription.value = '';
   imageHashtag.value = '';
+  scaleValue.value = `${SCALE_DEFAULT * 100}%`;
+  previewImage.style.transform = `scale(${SCALE_DEFAULT})`;
+
 };
 
 const getListenerKeydown = () => {
@@ -31,8 +40,11 @@ const removeListenerKeydown = () => {
 const openForm = () => {
   imageEditor.classList.remove('hidden');
   body.classList.add('modal-open');
+  clearForm();
   closeButton.addEventListener('click', oncloseButtonClick);
   getListenerKeydown();
+  getStatusScaleButton();
+  scaleUpButton.addEventListener('click', scaleUp)
 };
 
 const closeForm = () => {
@@ -48,6 +60,11 @@ imgeUpload.addEventListener('change', () => {
   openForm();
 });
 
+form.addEventListener('submit', (e) => {
+  if (!isValidate) {
+    e.preventDefault();
+  }
+});
 
 function oncloseButtonClick() {
   closeForm();

@@ -116,9 +116,7 @@
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
                   <div class="img-upload__field-wrapper">
-                    <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег" required minlength="2" maxlength="20" data-pristine-required-message="Без #ХэшТега никак =("
-                    data-pristine-minlength-message="Не менее 2х символов"
-                    data-pristine-maxlength-message="Не более 20 символов">
+                    <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
                   </div>
                   <div class="img-upload__field-wrapper">
                     <textarea class="text__description" name="description" placeholder="Ваш комментарий..." autocomplete="off" maxlenght = "140" data-pristine-maxlength-message="Не более 140 символов"></textarea>
@@ -144,7 +142,7 @@
 
         <!-- Просмотр изображения -->
         <div class="big-picture__img">
-          <img src="img/logo-background-3.jpg" alt="Девушка в купальнике" width="600" height="600">
+          <img src="img/logo-background-3.jpg" alt="Девушка в купальнике" width="600" height="600" tabindex="0">
         </div>
 
         <!-- Информация об изображении. Подпись, комментарии, количество лайков -->
