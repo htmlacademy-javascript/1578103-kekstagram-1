@@ -1,6 +1,7 @@
 import { isEscKey } from './utils.js';
-import { resetPristine } from './validate-download-form.js';
-
+import { resetPristine, isValidate } from './validate-form.js';
+import { resetScale } from './scale.js';
+import { resetEffect } from './effects.js';
 
 const body = document.querySelector('body');
 const form = body.querySelector('#upload-select-image');
@@ -14,9 +15,11 @@ const clearForm = () => {
   imgeUpload.value = '';
   imageDescription.value = '';
   imageHashtag.value = '';
+  resetScale();
+  resetEffect();
 };
 
-const getListenerKeydown = () => {
+const addListenerKeydown = () => {
   document.addEventListener('keydown', onDocumentKeydown);
   imageDescription.addEventListener('keydown', onInputKeydown);
   imageHashtag.addEventListener('keydown', onInputKeydown);
@@ -31,8 +34,10 @@ const removeListenerKeydown = () => {
 const openForm = () => {
   imageEditor.classList.remove('hidden');
   body.classList.add('modal-open');
+  resetScale();
+  resetEffect();
   closeButton.addEventListener('click', oncloseButtonClick);
-  getListenerKeydown();
+  addListenerKeydown();
 };
 
 const closeForm = () => {
@@ -42,12 +47,18 @@ const closeForm = () => {
   closeButton.removeEventListener('click', oncloseButtonClick);
   removeListenerKeydown();
   resetPristine();
+
 };
 
 imgeUpload.addEventListener('change', () => {
   openForm();
 });
 
+form.addEventListener('submit', (e) => {
+  if (!isValidate()) {
+    e.preventDefault();
+  }
+});
 
 function oncloseButtonClick() {
   closeForm();
@@ -63,3 +74,4 @@ function onDocumentKeydown(e) {
 function onInputKeydown(e) {
   e.stopPropagation();
 }
+

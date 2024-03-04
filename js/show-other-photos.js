@@ -3,6 +3,7 @@ import { openFullSizeMode } from './full-size-mode.js';
 const otherPhoto = document.querySelector('.pictures');
 const otherPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const photos = [];
+let focusPhoto = 0;
 
 const renderCards = (otherPhotos) => {
   photos.length = 0;
@@ -27,8 +28,9 @@ otherPhoto.addEventListener('click', (e) => {
     const id = Number(e.target.closest('.picture').dataset.id);
     const photo = getPhotoDescription(photos, id);
     openFullSizeMode(photo);
+    focusPhoto = e.target.closest('.picture');
   }
-
 });
 
-export { renderCards };
+
+export { renderCards, focusPhoto };

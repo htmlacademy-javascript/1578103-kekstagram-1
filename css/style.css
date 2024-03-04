@@ -436,7 +436,7 @@ main {
 }
 
 .scale__control:hover,
-.scale__control:focus {
+.scale__control:focus-visible {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -802,6 +802,10 @@ main {
 
 .big-picture__img img {
   display: block;
+}
+
+.big-picture__img img:focus{
+  outline: none;
 }
 
 .social {
@@ -1425,4 +1429,8 @@ main {
 
 .hidden {
   display: none;
+}
+
+.scale__control:disabled{
+  opacity: 0.4;
 }
