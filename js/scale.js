@@ -1,43 +1,40 @@
-import { SCALE_STEP, SCALE_DEFAULT, MAX_SCALE, MIN_SCALE } from "./constants.js";
+import { SCALE_STEP, SCALE_DEFAULT, MAX_SCALE, MIN_SCALE } from './constants.js';
 
-const scaleDownButton = document.querySelector('.scale__control--smaller');
+const scaleDown = document.querySelector('.scale__control--smaller');
 const scaleValue = document.querySelector('.scale__control--value');
-const scaleUpButton = document.querySelector('.scale__control--bigger');
+const scaleUp = document.querySelector('.scale__control--bigger');
 const previewImage = document.querySelector('.img-upload__preview img');
 
 let scale = SCALE_DEFAULT;
 
-const getStatusScaleButton = () => {
-  if (scale === MAX_SCALE) {
-    scaleUpButton.disabled = true;
-    scaleUpButton.style.opacity = '0.4';
-  }
-  if (scale === MIN_SCALE) {
-    scaleDownButton.disabled = true;
-    scaleDownButton.style.opacity = '0.4';
-  }
+const setStatusScaleButton = () => {
+  scaleUp.disabled = scale === MAX_SCALE;
+  scaleDown.disabled = scale === MIN_SCALE;
 };
 
-const scaleUp = () => {
-  scale += (scale + SCALE_STEP <= MAX_SCALE) ? SCALE_STEP : 0;
+const renderScale = () => {
   scaleValue.value = `${scale * 100}%`;
   previewImage.style.transform = `scale(${scale})`;
+  setStatusScaleButton();
 };
-// const changeScaleImage = (scale) => {
-//   const scaleLevel = parseInt(scale.value) / 100;
-//   previewImage.style.transform = `scale(${scaleLevel})`;
-// };
 
-// if (parseInt(scale.value) === 0) {
-//   smaller.disabled = true;
-//   smaller.style.opacity = '0.4';
-// }
+const onScaleUpClick = () => {
+  scale += (scale + SCALE_STEP <= MAX_SCALE) ? SCALE_STEP : 0;
+  renderScale();
 
-// const onBiggerClick = () => {
-//   if (parseInt(scale.value) === 100) {
-//     bigger.disabled = true;
-//     bigger.style.opacity = '0.4';
-//   }
+};
 
-// }
-export { getStatusScaleButton, scaleUp };
+const onScaleDowClick = () => {
+  scale -= (scale - SCALE_STEP >= MIN_SCALE) ? SCALE_STEP : 0;
+  renderScale();
+};
+
+scaleUp.addEventListener('click', onScaleUpClick);
+scaleDown.addEventListener('click', onScaleDowClick);
+
+const resetScale = () => {
+  scale = SCALE_DEFAULT;
+  renderScale();
+};
+
+export { resetScale };

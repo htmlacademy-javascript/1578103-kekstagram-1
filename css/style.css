@@ -436,7 +436,7 @@ main {
 }
 
 .scale__control:hover,
-.scale__control:focus {
+.scale__control:focus-visible {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -1429,4 +1429,8 @@ main {
 
 .hidden {
   display: none;
+}
+
+.scale__control:disabled{
+  opacity: 0.4;
 }

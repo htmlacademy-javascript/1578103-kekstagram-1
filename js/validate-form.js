@@ -1,4 +1,4 @@
-import { VALID_SYMBOLS, VALID_FIRST_SYMBOL, MAX_HASHTAGS } from './constants.js';
+import { VALID_SYMBOLS, MAX_HASHTAGS } from './constants.js';
 
 const form = document.querySelector('#upload-select-image');
 const imageDescription = form.querySelector('.text__description');
@@ -20,15 +20,11 @@ const getArrayHeshtags = (userString) => {
   hashtags = String(userString).toLowerCase().replace(/\s+/g, ' ').trim().split(' ');
 };
 
-const validateFirstSymbol = (value) => {
-  getArrayHeshtags(value);
-  return hashtags.every((hashtag) => VALID_FIRST_SYMBOL.test(hashtag));
-};
-
-const validateSymbols = (value) => {
+const validatetSymbols = (value) => {
   getArrayHeshtags(value);
   return hashtags.every((hashtag) => VALID_SYMBOLS.test(hashtag));
 };
+
 
 const validateMaxHhtags = (value) => {
   getArrayHeshtags(value);
@@ -43,15 +39,35 @@ const validateUniqueHhtags = (value) => {
 
 const validateDescription = (value) => value.length <= 140;
 
-pristine.addValidator(imageHashtag, validateFirstSymbol, 'Первый символ #');
+pristine.addValidator(
+  imageHashtag,
+  validatetSymbols,
+  'Первый символ #, максимум 20 символов, нельзя использовать после # (#, @, $, -, +, и т.д.)',
+  1,
+  true);
 
-pristine.addValidator(imageHashtag, validateSymbols, 'После # необходим от 1 до 19. Нельзя применять после # (#, @, $, -, +, и т.д.)');
 
-pristine.addValidator(imageHashtag, validateMaxHhtags, 'Не более 5 #ХешТэгов');
+pristine.addValidator(
+  imageHashtag,
+  validateMaxHhtags,
+  'Не более 5 #ХешТэгов',
+  2,
+  true
+);
 
-pristine.addValidator(imageHashtag, validateUniqueHhtags, 'Не может быть 2 одинаковых #ХешТэга ');
+pristine.addValidator(
+  imageHashtag,
+  validateUniqueHhtags,
+  'Не может быть 2 одинаковых #ХешТэга ',
+  3,
+  true
+);
 
-pristine.addValidator(imageDescription, validateDescription, 'Не более 140 символов');
+pristine.addValidator(
+  imageDescription,
+  validateDescription,
+  'Не более 140 символов',
+);
 
 function resetPristine() {
   pristine.reset();
