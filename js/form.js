@@ -2,6 +2,8 @@ import { isEscKey } from './utils.js';
 import { resetPristine, isValidate } from './validate-form.js';
 import { resetScale } from './scale.js';
 import { resetEffect } from './effects.js';
+import { sendData } from './api.js';
+import { showSuccessSendData } from './message.js';
 
 const body = document.querySelector('body');
 const form = body.querySelector('#upload-select-image');
@@ -10,6 +12,7 @@ const imageEditor = form.querySelector('.img-upload__overlay');
 const closeButton = form.querySelector('.img-upload__cancel');
 const imageDescription = form.querySelector('.text__description');
 const imageHashtag = form.querySelector('.text__hashtags');
+const submitButton = form.querySelector('.img-upload__submit');
 
 const clearForm = () => {
   imgeUpload.value = '';
@@ -47,18 +50,35 @@ const closeForm = () => {
   closeButton.removeEventListener('click', oncloseButtonClick);
   removeListenerKeydown();
   resetPristine();
-
 };
 
 imgeUpload.addEventListener('change', () => {
   openForm();
 });
 
-form.addEventListener('submit', (e) => {
-  if (!isValidate()) {
-    e.preventDefault();
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+};
+
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (isValidate()) {
+    blockSubmitButton();
+    try {
+      await sendData(new FormData(e.target));
+      closeForm();
+      showSuccessSendData();
+    } finally {
+      unblockSubmitButton();
+    }
   }
 });
+
 
 function oncloseButtonClick() {
   closeForm();

@@ -1,7 +1,9 @@
-import { getArrayPhotoDescription } from './data.js';
 import { renderCards } from './show-other-photos.js';
 import './form.js';
+import { getData } from './api.js';
 
-const otherPhotos = getArrayPhotoDescription();
-renderCards(otherPhotos);
+getData()
+  .then((photos) => {
+    renderCards(photos);
+  });
 
