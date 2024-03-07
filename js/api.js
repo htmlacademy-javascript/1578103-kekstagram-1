@@ -1,4 +1,4 @@
-import { DATA_URL, Route, Method, TIMEOUT } from './constants.js';
+import { DATA_URL, Route, Method } from './constants.js';
 import { showErrorGetData, showSuccessSendData, showErrorSendData } from './message.js';
 
 // const ReturnFunction = {

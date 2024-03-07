@@ -22,14 +22,14 @@ const getRandomPhotos = (photos) => {
   return [...randomPhotosSet];
 };
 
-const setFilterClick = (renderCardsFilters) => {
+const setFilterClick = (callback) => {
   filterList.addEventListener('click', (e) => {
     if (e.target.closest('.img-filters__button')) {
       e.preventDefault();
       filterList.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
       e.target.classList.add('img-filters__button--active');
       filterButtonId = e.target.id;
-      renderCardsFilters();
+      callback();
     }
   });
 };
