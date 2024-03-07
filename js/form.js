@@ -3,7 +3,7 @@ import { resetPristine, isValidate } from './validate-form.js';
 import { resetScale } from './scale.js';
 import { resetEffect } from './effects.js';
 import { sendData } from './api.js';
-import { showSuccessSendData } from './message.js';
+import { FILE_TYPES } from './constants.js';
 
 const body = document.querySelector('body');
 const form = body.querySelector('#upload-select-image');
@@ -13,6 +13,7 @@ const closeButton = form.querySelector('.img-upload__cancel');
 const imageDescription = form.querySelector('.text__description');
 const imageHashtag = form.querySelector('.text__hashtags');
 const submitButton = form.querySelector('.img-upload__submit');
+const photoPreview = document.querySelector('.img-upload__preview img');
 
 const clearForm = () => {
   imgeUpload.value = '';
@@ -22,14 +23,22 @@ const clearForm = () => {
   resetEffect();
 };
 
-const addListenerKeydown = () => {
+const addFormKeydownEvent = () => {
   document.addEventListener('keydown', onDocumentKeydown);
+};
+
+const removeFormKeydownEvent = () => {
+  document.removeEventListener('keydown', onDocumentKeydown);
+};
+
+const addListenerKeydown = () => {
+  addFormKeydownEvent();
   imageDescription.addEventListener('keydown', onInputKeydown);
   imageHashtag.addEventListener('keydown', onInputKeydown);
 };
 
 const removeListenerKeydown = () => {
-  document.removeEventListener('keydown', onDocumentKeydown);
+  removeFormKeydownEvent();
   imageDescription.removeEventListener('keydown', onInputKeydown);
   imageHashtag.removeEventListener('keydown', onInputKeydown);
 };
@@ -53,6 +62,12 @@ const closeForm = () => {
 };
 
 imgeUpload.addEventListener('change', () => {
+  const file = imgeUpload.files[0];
+  const fileName = file.name.toLowerCase();
+  const extensionMatches = FILE_TYPES.some((item) => fileName.endsWith(item));
+  if (extensionMatches) {
+    photoPreview.src = URL.createObjectURL(file);
+  }
   openForm();
 });
 
@@ -65,17 +80,17 @@ const unblockSubmitButton = () => {
 };
 
 
-form.addEventListener('submit', async (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
   if (isValidate()) {
     blockSubmitButton();
-    try {
-      await sendData(new FormData(e.target));
-      closeForm();
-      showSuccessSendData();
-    } finally {
-      unblockSubmitButton();
-    }
+    sendData(new FormData(e.target))
+      .then(closeForm)
+      .catch(() => {
+        throw Error();
+      }
+      )
+      .finally(unblockSubmitButton);
   }
 });
 
@@ -95,3 +110,4 @@ function onInputKeydown(e) {
   e.stopPropagation();
 }
 
+export { addFormKeydownEvent, removeFormKeydownEvent };
