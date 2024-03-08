@@ -1,7 +1,4 @@
-const createIdGenerator = () => {
-  let lastGeneratedId = 0;
-  return () => (lastGeneratedId += 1);
-};
+const isEscKey = (e) => e.key === 'Escape';
 
 const getRandomInteger = (min, max) => {
   const minInteger = Math.ceil(Math.min(min, max));
@@ -9,8 +6,12 @@ const getRandomInteger = (min, max) => {
   return Math.floor(Math.random() * (maxInteger - minInteger + 1) + minInteger);
 };
 
-const getRandomArrayElement = (arrayName) => arrayName[getRandomInteger(0, arrayName.length - 1)];
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
 
-const isEscKey = (e) => e.key === 'Escape';
-
-export { createIdGenerator, getRandomInteger, getRandomArrayElement, isEscKey };
+export { isEscKey, getRandomInteger, debounce };

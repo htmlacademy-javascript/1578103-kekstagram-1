@@ -1,7 +1,15 @@
-import { getArrayPhotoDescription } from './data.js';
-import { renderCards } from './show-other-photos.js';
-import './form.js';
+import { getData } from './api.js';
+import { showImageFilters, renderCardsFilters, setFilterClick } from './image-filters.js';
+import { debounce } from './utils.js';
+import { RERENDER_DELAY } from './constants.js';
 
-const otherPhotos = getArrayPhotoDescription();
-renderCards(otherPhotos);
+getData()
+  .then((photos) => {
+    renderCardsFilters(photos);
+    setFilterClick(debounce(
+      () => renderCardsFilters(photos),
+      RERENDER_DELAY,
+    ));
+  })
+  .then(() => showImageFilters());
 

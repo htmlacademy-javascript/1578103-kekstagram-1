@@ -7,6 +7,7 @@ let focusPhoto = 0;
 
 const renderCards = (otherPhotos) => {
   photos.length = 0;
+  otherPhoto.querySelectorAll('.picture').forEach((photo) => photo.remove());
   photos.push(...otherPhotos);
   const otherPhotoFragment = document.createDocumentFragment();
   otherPhotos.forEach(({ id, url, description, comments, likes }) => {

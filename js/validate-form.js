@@ -15,24 +15,28 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__error'
 });
 
-const getArrayHeshtags = (userString) => {
-  hashtags.length = 0;
-  hashtags = String(userString).toLowerCase().replace(/\s+/g, ' ').trim().split(' ');
+const getArrayHashtags = (userString) => {
+  if (userString.length === 0) {
+    hashtags = [];
+  } else {
+    hashtags.length = 0;
+    hashtags = String(userString).toLowerCase().replace(/\s+/g, ' ').trim().split(' ');
+  }
 };
 
 const validatetSymbols = (value) => {
-  getArrayHeshtags(value);
+  getArrayHashtags(value);
   return hashtags.every((hashtag) => VALID_SYMBOLS.test(hashtag));
 };
 
 
 const validateMaxHhtags = (value) => {
-  getArrayHeshtags(value);
+  getArrayHashtags(value);
   return hashtags.length <= MAX_HASHTAGS;
 };
 
 const validateUniqueHhtags = (value) => {
-  getArrayHeshtags(value);
+  getArrayHashtags(value);
   return hashtags.length === new Set(hashtags).size;
 };
 
@@ -76,3 +80,4 @@ function resetPristine() {
 const isValidate = () => pristine.validate();
 
 export { resetPristine, isValidate };
+
