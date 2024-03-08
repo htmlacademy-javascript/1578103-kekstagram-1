@@ -8,7 +8,6 @@ const image = document.querySelector('.img-upload__preview img');
 
 let efectParameters = {};
 
-
 noUiSlider.create(sliderElement, {
   range: {
     min: 0,
@@ -54,7 +53,6 @@ const getSliderUpdate = ({ minValue, maxValue, step }) => {
     start: maxValue,
     step: step,
   });
-
 };
 
 effectsList.addEventListener('change', (e) => {

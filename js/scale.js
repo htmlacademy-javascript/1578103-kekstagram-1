@@ -21,7 +21,6 @@ const renderScale = () => {
 const onScaleUpClick = () => {
   scale += (scale + SCALE_STEP <= MAX_SCALE) ? SCALE_STEP : 0;
   renderScale();
-
 };
 
 const onScaleDowClick = () => {

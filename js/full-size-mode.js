@@ -31,7 +31,6 @@ const openFullSizeMode = (photo) => {
   renderModal(photo);
 };
 
-
 function closeFullSizeMode() {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -39,7 +38,6 @@ function closeFullSizeMode() {
   clearComments();
   focusPhoto.focus();
 }
-
 
 bigPictureClose.addEventListener('click', () => {
   closeFullSizeMode();

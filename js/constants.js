@@ -63,6 +63,7 @@ const Filers = {
 };
 const RERENDER_DELAY = 500;
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+const NO_COMMENTS = 'Комментриев пока нет =(';
 
 export {
   DATA_URL,
@@ -82,4 +83,5 @@ export {
   Filers,
   RERENDER_DELAY,
   FILE_TYPES,
+  NO_COMMENTS,
 };
