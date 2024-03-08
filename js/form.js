@@ -79,7 +79,6 @@ const unblockSubmitButton = () => {
   submitButton.disabled = false;
 };
 
-
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   if (isValidate()) {
@@ -93,7 +92,6 @@ form.addEventListener('submit', (e) => {
       .finally(unblockSubmitButton);
   }
 });
-
 
 function oncloseButtonClick() {
   closeForm();

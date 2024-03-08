@@ -29,7 +29,6 @@ const validatetSymbols = (value) => {
   return hashtags.every((hashtag) => VALID_SYMBOLS.test(hashtag));
 };
 
-
 const validateMaxHhtags = (value) => {
   getArrayHashtags(value);
   return hashtags.length <= MAX_HASHTAGS;
@@ -40,7 +39,6 @@ const validateUniqueHhtags = (value) => {
   return hashtags.length === new Set(hashtags).size;
 };
 
-
 const validateDescription = (value) => value.length <= 140;
 
 pristine.addValidator(
@@ -49,7 +47,6 @@ pristine.addValidator(
   'Первый символ #, максимум 20 символов, нельзя использовать после # (#, @, $, -, +, и т.д.)',
   1,
   true);
-
 
 pristine.addValidator(
   imageHashtag,

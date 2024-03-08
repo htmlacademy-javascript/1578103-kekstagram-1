@@ -1,4 +1,4 @@
-import { COMMENTS_STEP } from './constants.js';
+import { COMMENTS_STEP, NO_COMMENTS } from './constants.js';
 
 const commentsList = document.querySelector('.social__comments');
 const commentItemTemplate = commentsList.querySelector('.social__comment');
@@ -47,7 +47,7 @@ const showСomments = (comments) => {
   counter = 0;
   clearComments();
   if (!comments.length) {
-    commentCounter.textContent = 'Комментриев пока нет =(';
+    commentCounter.textContent = NO_COMMENTS;
   } else {
     total = comments.length;
     copyComments.length = 0;
@@ -59,7 +59,6 @@ const showСomments = (comments) => {
 commentsLoader.addEventListener('click', () => {
   renderComments();
 });
-
 
 function clearComments() {
   commentsList.innerHTML = '';

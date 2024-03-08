@@ -32,7 +32,6 @@ const createErrorBanner = () => {
   errorBanner.style.textAlign = 'center';
   errorBanner.style.backgroundColor = '#ff8a8a';
   errorBanner.style.color = '#000000';
-
   errorBanner.textContent = 'Ошибка загрузки данных. Попробуйте обновить страницу';
   body.append(errorBanner);
 };
@@ -90,7 +89,6 @@ function closeMessage(element) {
   }
   element.remove();
   removeCloseEvent(element);
-
 }
 
 const showSuccessSendData = () => {
@@ -105,6 +103,5 @@ const showErrorSendData = () => {
   addCloseEvent(errorSendData);
   removeFormKeydownEvent();
 };
-
 
 export { showErrorGetData, showSuccessSendData, showErrorSendData };

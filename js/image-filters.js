@@ -5,11 +5,9 @@ import { MIN_INTEGER, MAX_RANDOM_PHOTOS, Filers, } from './constants.js';
 const imageFilters = document.querySelector('.img-filters');
 const filterList = imageFilters.querySelector('.img-filters__form');
 
-
 let filterButtonId = Filers.DEFAULT;
 
 const showImageFilters = () => imageFilters.classList.remove('img-filters--inactive');
-
 
 const getRandomPhotos = (photos) => {
   const randomPhotosSet = new Set();
@@ -35,7 +33,6 @@ const setFilterClick = (callback) => {
 };
 
 const comparePhotoComments = (photoA, photoB) => photoB.comments.length - photoA.comments.length;
-
 
 const renderCardsFilters = (photos) => {
   switch (filterButtonId) {
